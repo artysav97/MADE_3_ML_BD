@@ -1,0 +1,39 @@
+См. флаги “-mkdir” и “-touchz“
+1. [2 балла] Создайте папку в корневой HDFS-папке
+hdfs dfs -mkdir /artem.savinov.folder
+2. [2 балла] Создайте в созданной папке новую вложенную папку.
+hdfs dfs -mkdir /artem.savinov.folder/artem.savinov.subfolder
+3. [3 балла] Что такое Trash в распределенной FS? Как сделать так, чтобы файлы удалялись сразу, минуя “Trash”?
+Trash - временное хранилище данных, которые были удалены пользователем, через некоторое определенное время файлы будут удалены
+Использовать -skipTrash, например:
+hdfs dfs -rm -r -skipTrash artem.savinov.file
+4. [2 балла] Создайте пустой файл в подпапке из пункта 2.
+hdfs dfs -touchz '/artem.savinov.folder/artem.savinov.subfolder/artem.savinov.file.txt'
+5. [2 балла] Удалите созданный файл.
+hdfs dfs -rm -r -skipTrash /artem.savinov.folder/artem.savinov.subfolder/artem.savinov.file.txt
+6. [2 балла] Удалите созданные папки.
+hdfs dfs -rm -r -skipTrash /artem.savinov.folder
+
+См. флаги “-put”, “-cat”, “-tail”, “-cp”
+1. [3 балла] Скопируйте любой в новую папку на HDFS
+hdfs dfs -put artem.savinov.file.txt /artem.savinov.folder/
+2. [3 балла] Выведите содержимое HDFS-файла на экран.
+hdfs dfs -cat /artem.savinov.folder/artem.savinov.file.txt
+3. [3 балла] Выведите содержимое нескольких последних строчек HDFS-файла на экран.
+hdfs dfs -cat /artem.savinov.folder/artem.savinov.file.txt | tail -n 3
+или
+hdfs dfs -tail /artem.savinov.folder/artem.savinov.file.txt
+4. [3 балла] Выведите содержимое нескольких первых строчек HDFS-файла на экран.
+hdfs dfs -cat /artem.savinov.folder/artem.savinov.file.txt | head -n 3
+5. [3 балла] Переместите копию файла в HDFS на новую локацию.
+hdfs dfs -cp /artem.savinov.folder/artem.savinov.file.txt /artem.savinov.folder/artem.savinov.subfolder
+
+Задачи:
+2. [4 баллов] Изменить replication factor для файла. Как долго занимает время на увеличение /
+уменьшение числа реплик для файла?
+hdfs dfs -setrep -w 2 /artem.savinov.folder/artem.savinov.file.txt
+3. [4 баллов] Найдите информацию по файлу, блокам и их расположениям с помощью “hdfs fsck”
+hdfs fsck /artem.savinov.folder/artem.savinov.file.txt -files -blocks -locations
+4. [4 баллов] Получите информацию по любому блоку из п.2 с помощью "hdfs fsck -blockId”.
+Обратите внимание на Generation Stamp (GS number).
+hdfs fsck -blockId blk_1073741830

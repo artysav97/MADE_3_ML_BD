@@ -1,0 +1,186 @@
+Подключение к HIVE 
+
+(base) artysav@DESKTOP-G0IDORE:/mnt/c/Users/artys/Documents/Python Scripts/MADE from Mail.ru Group/3 - Машинное обучение
+ на больших данных/HW2 - hive2/docker-hadoop-hive-parquet$ docker-compose exec hive-server bash
+root@16da64b0b1e7:/opt# /opt/hive/bin/beeline -u jdbc:hive2://localhost:10000
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/opt/hive/lib/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/opt/hadoop-2.7.4/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Connecting to jdbc:hive2://localhost:10000
+Connected to: Apache Hive (version 2.3.2)
+Driver: Hive JDBC (version 2.3.2)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 2.3.2 by Apache Hive
+0: jdbc:hive2://localhost:10000>
+
+
+1)
+
+Создание таблицы
+
+0: jdbc:hive2://localhost:10000> CREATE TABLE artists (mbid STRING, artist_mb STRING, artist_lastfm STRING, country_mb STRING, country_lastfm STRING, tags_mb STRING, tags_lastfm STRING, listeners_lastfm INT, scrobbles_lastfm INT, ambiguous_artist STRING) row format delimited fields terminated by ',' tblproperties ("skip.header.line.count"="1");
+No rows affected (0.14 seconds)
+0: jdbc:hive2://localhost:10000> show tables;
++-----------+
+| tab_name  |
++-----------+
+| artists   |
++-----------+
+1 row selected (0.048 seconds)
+0: jdbc:hive2://localhost:10000>
+
+
+Загрузка в контейнер
+
+(base) artysav@DESKTOP-G0IDORE:/mnt/c/Users/artys/Documents/Python Scripts/MADE from Mail.ru Group/3 - Машинное обучение
+ на больших данных/HW2 - hive2$ docker cp artists.csv docker-hadoop-hive-parquet_hive-server_1:/opt
+
+Проверяем что файл положили
+
+(base) artysav@DESKTOP-G0IDORE:/mnt/c/Users/artys/Documents/Python Scripts/MADE from Mail.ru Group/3 - Машинное обучение
+ на больших данных/HW2 - hive2/docker-hadoop-hive-parquet$ docker-compose exec hive-server bash
+root@16da64b0b1e7:/opt# ls
+artists.csv  hadoop-2.7.4  hive
+
+Загружаем данные в hdfs 
+
+root@16da64b0b1e7:/opt# hdfs dfs -put artists.csv /user
+root@16da64b0b1e7:/opt# hdfs dfs -ls /user
+Found 2 items
+-rw-r--r--   3 root supergroup  201103324 2021-10-16 13:59 /user/artists.csv
+drwxr-xr-x   - root supergroup          0 2021-10-16 12:46 /user/hive
+
+
+Загружаем данные в таблицу
+
+0: jdbc:hive2://localhost:10000> LOAD DATA LOCAL INPATH '/opt/artists.csv' OVERWRITE INTO TABLE artists;
+No rows affected (11.468 seconds)
+0: jdbc:hive2://localhost:10000>
+
+Проверяем заполненноть таблицы
+
+0: jdbc:hive2://localhost:10000> select artist_mb, artist_lastfm, country_mb  from artists limit 3;
++------------------------+------------------------+-----------------+
+|       artist_mb        |     artist_lastfm      |   country_mb    |
++------------------------+------------------------+-----------------+
+| Coldplay               | Coldplay               | United Kingdom  |
+| Radiohead              | Radiohead              | United Kingdom  |
+| Red Hot Chili Peppers  | Red Hot Chili Peppers  | United States   |
++------------------------+------------------------+-----------------+
+3 rows selected (0.31 seconds)
+0: jdbc:hive2://localhost:10000>
+
+
+2)
+
+Задание а) выполнено в beeline
+Задания b)c)d) выполнялись в HUE
+
+a) 
+0: jdbc:hive2://localhost:10000> select artist_mb, scrobbles_lastfm from artists sort by scrobbles_lastfm desc limit 1;
+WARNING: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
++--------------+-------------------+
+|  artist_mb   | scrobbles_lastfm  |
++--------------+-------------------+
+| The Beatles  | 517126254         |
++--------------+-------------------+
+1 row selected (13.419 seconds)
+0: jdbc:hive2://localhost:10000>
+
+b)
+with temp as (
+select
+    artist_lastfm,
+    scrobbles_lastfm,
+    one_tag_lastfm
+from artists
+LATERAL VIEW explode(split(tags_lastfm, '; ')) tags_list as one_tag_lastfm
+)
+
+select 
+one_tag_lastfm,
+sum(scrobbles_lastfm) as sum_scrobbles_lastfm
+from temp
+group by one_tag_lastfm
+sort by sum_scrobbles_lastfm desc
+limit 10;
+
+Ответ:
+ 	one_tag_lastfm		sum_scrobbles_lastfm
+1	seen live		89647094995
+2	rock			77475365391
+3	alternative		69542152071
+4	indie			57430774544
+5	pop			56681807433
+6	electronic		48286852650
+7	alternative rock	43320934234
+8	american		42347562451
+9	male vocalists		40567238247
+10	00s			39585589754
+
+
+c)
+with temp as (
+select
+    artist_lastfm,
+    scrobbles_lastfm,
+    one_tag_lastfm
+from artists
+LATERAL VIEW explode(split(tags_lastfm, '; ')) tags_list as one_tag_lastfm
+)
+
+select temp.one_tag_lastfm, temp.artist_lastfm, top_tags.sum_scrobbles_lastfm
+from temp
+join (select 
+    one_tag_lastfm,
+    sum(scrobbles_lastfm) as sum_scrobbles_lastfm,
+    max(scrobbles_lastfm) as max_scrobbles_lastfm
+    from temp
+    group by one_tag_lastfm
+    sort by sum_scrobbles_lastfm desc
+    limit 10) as top_tags
+on temp.one_tag_lastfm = top_tags.one_tag_lastfm
+and temp.scrobbles_lastfm = top_tags.max_scrobbles_lastfm
+sort by top_tags.sum_scrobbles_lastfm desc
+
+Ответ:
+ 	temp.one_tag_lastfm	temp.artist_lastfm	top_tags.sum_scrobbles_lastfm
+1	seen live		Radiohead		89647094995
+2	rock			The Beatles		77475365391
+3	alternative		Radiohead		69542152071
+4	indie			Radiohead		57430774544
+5	pop			The Beatles		56681807433
+6	electronic		Radiohead		48286852650
+7	alternative rock	Radiohead		43320934234
+8	american		Linkin Park		42347562451
+9	male vocalists		Radiohead		40567238247
+10	00s			Radiohead		39585589754
+
+d)
+
+Колличество тегов у топ-5 самых популярных исполнителей
+
+select 
+    artist_lastfm,
+    size(split(tags_lastfm, '; ')) as len_tegs,
+    scrobbles_lastfm
+from artists 
+sort by scrobbles_lastfm desc
+limit 10
+
+Ответ:
+ 	artist_lastfm		len_tegs	scrobbles_lastfm
+1	The Beatles		5		517126254
+2	Radiohead		39		499548797
+3	Coldplay		38		360111850
+4	Muse			34		344838631
+5	Arctic Monkeys		28		332306552
+6	Pink Floyd		29		313236119
+7	Linkin Park		36		294986508
+8	Red Hot Chili Peppers	29		293784041
+9	Lady Gaga		46		285469647
+10	Metallica		23		281172228
+
+

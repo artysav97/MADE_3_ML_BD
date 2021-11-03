@@ -1,0 +1,925 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "spark",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T20:53:08+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres21\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m = org.apache.spark.sql.SparkSession@239678ae\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335321_1668466978",
+      "id": "paragraph_1635798493339_1651516215",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T20:53:08+0000",
+      "dateFinished": "2021-11-03T20:53:08+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:29787"
+    },
+    {
+      "text": "import org.apache.spark.sql._\nimport spark.implicits._\nimport org.apache.spark.sql.functions._\nimport org.apache.spark.sql.expressions._\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T20:53:08+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql._\nimport spark.implicits._\nimport org.apache.spark.sql.functions._\nimport org.apache.spark.sql.expressions._\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335322_2004253253",
+      "id": "paragraph_1635800551222_8713181",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T20:53:08+0000",
+      "dateFinished": "2021-11-03T20:53:09+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29788"
+    },
+    {
+      "text": "val spark = SparkSession.builder()\r\n    // адрес мастера\r\n    .master(\"local[*]\")\r\n    // имя приложения в интерфейсе спарка\r\n    .appName(\"made-demo\")\r\n//     .config(\"spark.executor.memory\",  \"2g\")\r\n//     .config(\"spark.executor.cores\", \"2\")\r\n//     .config(\"spark.driver.memory\", \"2g\")\r\n    .getOrCreate()",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T20:53:09+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m = org.apache.spark.sql.SparkSession@239678ae\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335322_1555218688",
+      "id": "paragraph_1635800610640_263975863",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T20:53:09+0000",
+      "dateFinished": "2021-11-03T20:53:10+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29789"
+    },
+    {
+      "text": "val df = spark.read\r\n    .option(\"header\", \"true\")\r\n    .option(\"inferSchema\", \"true\")\r\n    .option(\"sep\", \",\")\r\n    .csv(\"/my_new_folder/tripadvisor_hotel_reviews.csv\")\r\n\r\ndf.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T20:53:10+0000",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+------+\n|              Review|Rating|\n+--------------------+------+\n|nice hotel expens...|     4|\n|ok nothing specia...|     2|\n|nice rooms not 4*...|     3|\n|unique, great sta...|     5|\n|great stay great ...|     5|\n+--------------------+------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [Review: string, Rating: int]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=42",
+              "$$hashKey": "object:30450"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=43",
+              "$$hashKey": "object:30451"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=44",
+              "$$hashKey": "object:30452"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335322_1737299298",
+      "id": "paragraph_1635800642577_1525033374",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T20:53:10+0000",
+      "dateFinished": "2021-11-03T20:53:10+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29790"
+    },
+    {
+      "text": "// 1. Приводим строки к нижнему регистру и удаляем все символы кроме строчных латинскх букв\nval df2 = df.select(regexp_replace(lower(col(\"Review\")), \"[^a-z ]\", \"\").as(\"Clean_string\"))\ndf2.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T20:53:10+0000",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|        Clean_string|\n+--------------------+\n|nice hotel expens...|\n|ok nothing specia...|\n|nice rooms not  e...|\n|unique great stay...|\n|great stay great ...|\n+--------------------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mdf2\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [Clean_string: string]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=45",
+              "$$hashKey": "object:30518"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335323_876221634",
+      "id": "paragraph_1635877625852_1608223983",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T20:53:10+0000",
+      "dateFinished": "2021-11-03T20:53:11+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29791"
+    },
+    {
+      "text": "// 2. Разбиваем строку по пробельным символам\nvar df3 = df2.select(split(col(\"Clean_string\"),\" +\").as(\"Array\"))\ndf3.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T20:53:11+0000",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|               Array|\n+--------------------+\n|[nice, hotel, exp...|\n|[ok, nothing, spe...|\n|[nice, rooms, not...|\n|[unique, great, s...|\n|[great, stay, gre...|\n+--------------------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mdf3\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [Array: array<string>]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=46",
+              "$$hashKey": "object:30576"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335323_243596120",
+      "id": "paragraph_1635879290921_1815721069",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T20:53:11+0000",
+      "dateFinished": "2021-11-03T20:53:12+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29792"
+    },
+    {
+      "text": "// 3. Удаляем некоторые самые популярные стоп-слова, в том числе пустые элементы\nval stopWords = Array(\"\", \"did\", \"got\", \"lot\", \"no\", \"nt\", \"th\", \"not\")\ndf3 = df3.withColumn(\"Array\", array_except(df3(\"Array\"), lit(stopWords)))\ndf3.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T21:00:17+0000",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|               Array|\n+--------------------+\n|[nice, hotel, exp...|\n|[ok, nothing, spe...|\n|[nice, rooms, exp...|\n|[unique, great, s...|\n|[great, stay, wen...|\n+--------------------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mstopWords\u001b[0m: \u001b[1m\u001b[32mArray[String]\u001b[0m = Array(\"\", did, got, lot, no, nt, th, not)\ndf3: org.apache.spark.sql.DataFrame = [Array: array<string>]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=99",
+              "$$hashKey": "object:30634"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335323_1419038030",
+      "id": "paragraph_1635883289120_1910238157",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T21:00:17+0000",
+      "dateFinished": "2021-11-03T21:00:17+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29793"
+    },
+    {
+      "text": "// 4. Создаем новый столбец с длинной слов в предложении\nvar df4 = df3.select(\n    col(\"Array\"),\n    size(col(\"Array\")).as(\"total_word_sentence\")\n).orderBy(\"total_word_sentence\")\ndf4.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T21:00:20+0000",
+      "progress": 25,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+-------------------+\n|               Array|total_word_sentence|\n+--------------------+-------------------+\n|[loved, resort, a...|                  5|\n|[hotel, beach, be...|                  6|\n|[issues, say, sta...|                  7|\n|[fantastic, hotel...|                  7|\n|[nice, hotel, vie...|                  7|\n+--------------------+-------------------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mdf4\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m = [Array: array<string>, total_word_sentence: int]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=100",
+              "$$hashKey": "object:30692"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335323_1448707977",
+      "id": "paragraph_1635879453939_1809526490",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T21:00:20+0000",
+      "dateFinished": "2021-11-03T21:00:23+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29794"
+    },
+    {
+      "text": "// 5. Пронумеруем все предложения\nval windowSpec = Window.partitionBy().orderBy(\"Array\")\ndf4 = df4.withColumn(\"row_number\",row_number.over(windowSpec))\ndf4.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T21:00:25+0000",
+      "progress": 67,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+-------------------+----------+\n|               Array|total_word_sentence|row_number|\n+--------------------+-------------------+----------+\n|[a, bavaro, princ...|                 30|         1|\n|[a, highly, recom...|                 29|         2|\n|[a, hotel, qt, ex...|                 65|         3|\n|[a, perfect, hote...|                 24|         4|\n|[a, vacation, wif...|                188|         5|\n+--------------------+-------------------+----------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mwindowSpec\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.expressions.WindowSpec\u001b[0m = org.apache.spark.sql.expressions.WindowSpec@6a41469c\ndf4: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] = [Array: array<string>, total_word_sentence: int ... 1 more field]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=101",
+              "$$hashKey": "object:30750"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=102",
+              "$$hashKey": "object:30751"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335323_2098000214",
+      "id": "paragraph_1635876484666_857447750",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T21:00:25+0000",
+      "dateFinished": "2021-11-03T21:00:30+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29795"
+    },
+    {
+      "text": "// 6. Превратим столбец с массивами слов в столбец с отдельными словами\nvar df5 = df4.select(\n    col(\"row_number\"),\n    col(\"total_word_sentence\"), \n    explode(col(\"Array\"))\n    )\ndf5.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T21:00:29+0000",
+      "progress": 80,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+-------------------+--------+\n|row_number|total_word_sentence|     col|\n+----------+-------------------+--------+\n|         1|                 30|       a|\n|         1|                 30|  bavaro|\n|         1|                 30|princess|\n|         1|                 30|    best|\n|         1|                 30|vacation|\n+----------+-------------------+--------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mdf5\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [row_number: int, total_word_sentence: int ... 1 more field]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=103",
+              "$$hashKey": "object:30813"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=104",
+              "$$hashKey": "object:30814"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635885506491_1968033408",
+      "id": "paragraph_1635885506491_1968033408",
+      "dateCreated": "2021-11-02T20:38:26+0000",
+      "dateStarted": "2021-11-03T21:00:29+0000",
+      "dateFinished": "2021-11-03T21:00:36+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29796"
+    },
+    {
+      "text": "// 7. Считаем сколько раз встретилось слово в одном предложении\nvar df6_word = df5.groupBy(\"col\", \"row_number\", \"total_word_sentence\").agg(count(\"col\").as(\"word_sentence\"))\ndf6_word.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T21:00:34+0000",
+      "progress": 99,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+----------+-------------------+-------------+\n|     col|row_number|total_word_sentence|word_sentence|\n+--------+----------+-------------------+-------------+\n|       a|         1|                 30|            1|\n|  bavaro|         1|                 30|            1|\n|princess|         1|                 30|            1|\n|    best|         1|                 30|            1|\n|vacation|         1|                 30|            1|\n+--------+----------+-------------------+-------------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mdf6_word\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [col: string, row_number: int ... 2 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=105",
+              "$$hashKey": "object:30876"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=106",
+              "$$hashKey": "object:30877"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635886770098_1863919342",
+      "id": "paragraph_1635886770098_1863919342",
+      "dateCreated": "2021-11-02T20:59:30+0000",
+      "dateStarted": "2021-11-03T21:00:34+0000",
+      "dateFinished": "2021-11-03T21:00:43+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29797"
+    },
+    {
+      "text": "// 8. Считаем в скольких предложениях (документах) встретилось слово\nvar df6_documents = df5.dropDuplicates().groupBy(\"col\").agg(count(\"row_number\").as(\"documents\"))\ndf6_documents = df6_documents.orderBy(col(\"documents\").desc).limit(100)\ndf6_documents.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T21:00:47+0000",
+      "progress": 99,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----+---------+\n|  col|documents|\n+-----+---------+\n|hotel|    16325|\n| room|    14056|\n|staff|    11528|\n|great|    11021|\n| stay|    10096|\n+-----+---------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mdf6_documents\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [col: string, documents: bigint]\ndf6_documents: org.apache.spark.sql.DataFrame = [col: string, documents: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=107",
+              "$$hashKey": "object:30939"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=108",
+              "$$hashKey": "object:30940"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635887501268_452479529",
+      "id": "paragraph_1635887501268_452479529",
+      "dateCreated": "2021-11-02T21:11:41+0000",
+      "dateStarted": "2021-11-03T21:00:47+0000",
+      "dateFinished": "2021-11-03T21:00:54+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29798"
+    },
+    {
+      "text": "// 9. Соединяем две таблицы, полученные на предыдущих двух шагах\nvar df6 = df6_documents.join(df6_word, \"col\")\ndf6.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T21:00:51+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+---------+----------+-------------------+-------------+\n|      col|documents|row_number|total_word_sentence|word_sentence|\n+---------+---------+----------+-------------------+-------------+\n|     best|     4265|         1|                 30|            1|\n|    staff|    11528|         1|                 30|            1|\n|    great|    11021|         1|                 30|            1|\n|beautiful|     3397|         1|                 30|            1|\n|     like|     5329|         1|                 30|            1|\n+---------+---------+----------+-------------------+-------------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mdf6\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [col: string, documents: bigint ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=109",
+              "$$hashKey": "object:31002"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=110",
+              "$$hashKey": "object:31003"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=111",
+              "$$hashKey": "object:31004"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635887930827_1666463820",
+      "id": "paragraph_1635887930827_1666463820",
+      "dateCreated": "2021-11-02T21:18:50+0000",
+      "dateStarted": "2021-11-03T21:00:51+0000",
+      "dateFinished": "2021-11-03T21:01:03+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29799"
+    },
+    {
+      "text": "// 10. Считаем общее количество предложений (документов) и вычисляем TF-IDF\nval total_documents = df.count()\ndf6 = df6.withColumn(\"TF-IDF\", (col(\"word_sentence\") * total_documents) / (col(\"total_word_sentence\") * col(\"documents\")))\ndf6.orderBy(col(\"TF-IDF\").desc).show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T21:00:54+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+---------+----------+-------------------+-------------+------------------+\n|      col|documents|row_number|total_word_sentence|word_sentence|            TF-IDF|\n+---------+---------+----------+-------------------+-------------+------------------+\n|    loved|     2523|     13115|                  5|            1|1.6243361078081648|\n|   resort|     2780|     13115|                  5|            1|1.4741726618705036|\n|fantastic|     2336|      5456|                  7|            1|1.2531188845401173|\n|  perfect|     2359|     15076|                  8|            1|1.0857884696905469|\n|  perfect|     2359|      8379|                  8|            1|1.0857884696905469|\n+---------+---------+----------+-------------------+-------------+------------------+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mtotal_documents\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m = 20491\ndf6: org.apache.spark.sql.DataFrame = [col: string, documents: bigint ... 4 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=112",
+              "$$hashKey": "object:31070"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=113",
+              "$$hashKey": "object:31071"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=114",
+              "$$hashKey": "object:31072"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=115",
+              "$$hashKey": "object:31073"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635889418312_1512753696",
+      "id": "paragraph_1635889418312_1512753696",
+      "dateCreated": "2021-11-02T21:43:38+0000",
+      "dateStarted": "2021-11-03T21:00:54+0000",
+      "dateFinished": "2021-11-03T21:01:12+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29800"
+    },
+    {
+      "text": "// 11. Разворачиваем таблицу в ширину: строки - документы, столбцы - слова из списка топ-100 самых используемых\n// Также заполняем пропуски нулями\nvar df_final = df6.select(\"row_number\", \"col\", \"TF-IDF\").groupBy(\"row_number\").pivot(\"col\").sum(\"TF-IDF\")\ndf_final = df_final.na.fill(value=0).orderBy(\"row_number\")\nprintln(df_final.count())\nprintln(df_final.columns.size)\ndf_final.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T21:00:57+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "20489\n101\n+----------+-------------------+-------+-------------------+-------------------+---+--------+-----+-------------------+-------------------+----+--------------------+------+-------------------+---+------+--------------------+------+-----+-------------------+--------------------+-----+-------------------+--------------------+----+----------+--------------------+------------------+----------+---------+-------------------+--------------------+----+--------+--------------------+-------------------+--------------------+------------------+--------------------+------+--------------------+------------------+--------------------+------------------+-----+-------------------+----+-----+------+----+-------+-----+-------------------+----+---+--------------------+--------------------+------+-------------------+------------------+-------------------+--------------------+-----+-------+-----+-----+-------------------+------------------+------------------+----------+--------------------+-------+-----+-------------------+--------------------+---+--------------------+------+-------------------+--------------------+--------------------+--------------------+-------+------+----+-----+----+-------------------+------------------+------------------+-------------------+----+----+------------------+----+-----+--------------------+----+-------------------+---------+-----+\n|row_number|               area|arrived|               away|                bad|bar|bathroom|beach|          beautiful|                bed|beds|                best|better|                big|bit|booked|           breakfast|buffet|check|               city|               clean|close|        comfortable|                 day|days|definitely|                desk|         excellent|experience|fantastic|              floor|                food|free|friendly|               going|               good|               great|           helpful|               hotel|hotels|                just|             large|                like|            little|lobby|           location|long|loved|lovely|make|minutes|money|            morning|need|new|                nice|               night|nights|             people|           perfect|              place|                pool|price|problem|quiet|quite|             really|         recommend|            resort|restaurant|         restaurants|reviews|right|               room|               rooms|say|             service|shower|              small|               staff|                stay|              stayed|staying|street|sure|think|time|              times|              took|              trip|                use|view|walk|           walking|want|water|                 way|week|               went|wonderful|worth|\n+----------+-------------------+-------+-------------------+-------------------+---+--------+-----+-------------------+-------------------+----+--------------------+------+-------------------+---+------+--------------------+------+-----+-------------------+--------------------+-----+-------------------+--------------------+----+----------+--------------------+------------------+----------+---------+-------------------+--------------------+----+--------+--------------------+-------------------+--------------------+------------------+--------------------+------+--------------------+------------------+--------------------+------------------+-----+-------------------+----+-----+------+----+-------+-----+-------------------+----+---+--------------------+--------------------+------+-------------------+------------------+-------------------+--------------------+-----+-------+-----+-----+-------------------+------------------+------------------+----------+--------------------+-------+-----+-------------------+--------------------+---+--------------------+------+-------------------+--------------------+--------------------+--------------------+-------+------+----+-----+----+-------------------+------------------+------------------+-------------------+----+----+------------------+----+-----+--------------------+----+-------------------+---------+-----+\n|         1|                0.0|    0.0|                0.0|                0.0|0.0|     0.0|  0.0|0.20106957119026592|                0.0| 0.0| 0.16014849550605706|   0.0|                0.0|0.0|   0.0|                 0.0|   0.0|  0.0|                0.0|                 0.0|  0.0|                0.0|                 0.0| 0.0|       0.0|                 0.0|               0.0|       0.0|      0.0|                0.0|                 0.0| 0.0|     0.0|                 0.0|                0.0| 0.06197562229682727|               0.0|                 0.0|   0.0|                 0.0|               0.0| 0.12817289047350972|               0.0|  0.0|                0.0| 0.0|  0.0|   0.0| 0.0|    0.0|  0.0|                0.0| 0.0|0.0|                 0.0|                 0.0|   0.0|                0.0|               0.0|                0.0|                 0.0|  0.0|    0.0|  0.0|  0.0|                0.0|               0.0|               0.0|       0.0|                 0.0|    0.0|  0.0|                0.0|                 0.0|0.0|                 0.0|   0.0|                0.0|0.059249942169789495|                 0.0|                 0.0|    0.0|   0.0| 0.0|  0.0| 0.0|                0.0|               0.0|               0.0|                0.0| 0.0| 0.0|               0.0| 0.0|  0.0|                 0.0| 0.0|                0.0|      0.0|  0.0|\n|         2|                0.0|    0.0|                0.0|                0.0|0.0|     0.0|  0.0|                0.0|                0.0| 0.0|                 0.0|   0.0|                0.0|0.0|   0.0|                 0.0|   0.0|  0.0|                0.0| 0.09235213787695096|  0.0| 0.1841986983567653|                 0.0| 0.0|       0.0|                 0.0|               0.0|       0.0|      0.0|                0.0|                 0.0| 0.0|     0.0|                 0.0|                0.0|  0.0641127127208558|               0.0|                 0.0|   0.0|                 0.0|               0.0| 0.13259264531742385|               0.0|  0.0|                0.0| 0.0|  0.0|   0.0| 0.0|    0.0|  0.0|                0.0| 0.0|0.0|                 0.0| 0.10905791123576968|   0.0|                0.0|               0.0|                0.0|                 0.0|  0.0|    0.0|  0.0|  0.0|                0.0|0.1666476903057905|               0.0|       0.0|                 0.0|    0.0|  0.0|0.05026936588620886|                 0.0|0.0| 0.11338032844938249|   0.0|                0.0|                 0.0|                 0.0| 0.08262233476339473|    0.0|   0.0| 0.0|  0.0| 0.0|                0.0|               0.0|               0.0|                0.0| 0.0| 0.0|               0.0| 0.0|  0.0|                 0.0| 0.0|                0.0|      0.0|  0.0|\n|         3|0.07592633763153994|    0.0|0.09790253225035833|                0.0|0.0|     0.0|  0.0|                0.0|0.08333231663921592| 0.0|                 0.0|   0.0|                0.0|0.0|   0.0|0.044319717959532386|   0.0|  0.0|                0.0|0.041203261514331964|  0.0|0.08218095772840299|0.054531422564634814| 0.0|       0.0|                 0.0|0.0712581722075393|       0.0|      0.0|0.09161469161469162|                 0.0| 0.0|     0.0|                 0.0|                0.0|0.028604133367766432|               0.0|0.019310637295323358|   0.0|                 0.0|               0.0| 0.05915671868008141|               0.0|  0.0|0.03857637712263263| 0.0|  0.0|   0.0| 0.0|    0.0|  0.0|0.12185780975885344| 0.0|0.0|                 0.0|                 0.0|   0.0|                0.0|               0.0|                0.0| 0.07887069148014857|  0.0|    0.0|  0.0|  0.0|0.06455993320625719|               0.0|               0.0|       0.0|                 0.0|    0.0|  0.0|0.02242787093384703|                 0.0|0.0|0.050585069615878345|   0.0|0.06503943755852153| 0.02734612715528746|                 0.0|                 0.0|    0.0|   0.0| 0.0|  0.0| 0.0|0.14054665797866867|               0.0|0.0876414105771904|0.14238760336321313| 0.0| 0.0|               0.0| 0.0|  0.0| 0.09781140361345139| 0.0|                0.0|      0.0|  0.0|\n|         4|                0.0|    0.0|                0.0|                0.0|0.0|     0.0|  0.0|                0.0|                0.0| 0.0|                 0.0|   0.0|                0.0|0.0|   0.0|                 0.0|   0.0|  0.0|0.28922481933152666|                 0.0|  0.0|                0.0|                 0.0| 0.0|       0.0|                 0.0|               0.0|       0.0|      0.0|                0.0|                 0.0| 0.0|     0.0|                 0.0|                0.0|                 0.0|0.1688336299518819|  0.0522996426748341|   0.0|                 0.0|0.2900107563405797|                 0.0|               0.0|  0.0|                0.0| 0.0|  0.0|   0.0| 0.0|    0.0|  0.0|                0.0| 0.0|0.0|                 0.0|                 0.0|   0.0|                0.0|0.3619294898968489|0.16060791321795836| 0.21360812275873572|  0.0|    0.0|  0.0|  0.0|                0.0|               0.0|               0.0|       0.0|                 0.0|    0.0|  0.0|                0.0| 0.10236082803820486|0.0|                 0.0|   0.0|                0.0| 0.07406242771223687|  0.0845673203909139|                 0.0|    0.0|   0.0| 0.0|  0.0| 0.0|                0.0|               0.0|               0.0|                0.0| 0.0| 0.0|0.3326029087131541| 0.0|  0.0|                 0.0| 0.0|                0.0|      0.0|  0.0|\n|         5|                0.0|    0.0|0.03384927976741113|0.04925200219207584|0.0|     0.0|  0.0|                0.0|                0.0| 0.0|0.025555610985009105|   0.0|0.04436087946726244|0.0|   0.0|0.015323306741327685|   0.0|  0.0|                0.0|                 0.0|  0.0|                0.0|0.018853949290964164| 0.0|       0.0|0.034146203274142806|               0.0|       0.0|      0.0|                0.0|0.019904068818674913| 0.0|     0.0|0.042115409911539343|0.01174511647101981|                 0.0|               0.0|                 0.0|   0.0|0.014089281392329863|               0.0|0.020453120820240915|0.0247490192668174|  0.0|                0.0| 0.0|  0.0|   0.0| 0.0|    0.0|  0.0|                0.0| 0.0|0.0|0.014689310087744451|0.016822762903390003|   0.0|0.02641654892173142|               0.0|                0.0|0.027269122054306687|  0.0|    0.0|  0.0|  0.0|                0.0|               0.0|0.0392067197305985|       0.0|0.028258926847566458|    0.0|  0.0|                0.0|0.013067339749558066|0.0|0.017489518750170706|   0.0|0.02248703958140372|                 0.0|0.010795828135010285|0.012744934617757697|    0.0|   0.0| 0.0|  0.0| 0.0|                0.0|0.0475336593332158|               0.0|                0.0| 0.0| 0.0|               0.0| 0.0|  0.0|0.033817772525927346| 0.0|0.03428583858164952|      0.0|  0.0|\n+----------+-------------------+-------+-------------------+-------------------+---+--------+-----+-------------------+-------------------+----+--------------------+------+-------------------+---+------+--------------------+------+-----+-------------------+--------------------+-----+-------------------+--------------------+----+----------+--------------------+------------------+----------+---------+-------------------+--------------------+----+--------+--------------------+-------------------+--------------------+------------------+--------------------+------+--------------------+------------------+--------------------+------------------+-----+-------------------+----+-----+------+----+-------+-----+-------------------+----+---+--------------------+--------------------+------+-------------------+------------------+-------------------+--------------------+-----+-------+-----+-----+-------------------+------------------+------------------+----------+--------------------+-------+-----+-------------------+--------------------+---+--------------------+------+-------------------+--------------------+--------------------+--------------------+-------+------+----+-----+----+-------------------+------------------+------------------+-------------------+----+----+------------------+----+-----+--------------------+----+-------------------+---------+-----+\nonly showing top 5 rows\n\n\u001b[1m\u001b[34mdf_final\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [row_number: int, area: double ... 99 more fields]\ndf_final: org.apache.spark.sql.DataFrame = [row_number: int, area: double ... 99 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=116",
+              "$$hashKey": "object:31143"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=117",
+              "$$hashKey": "object:31144"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=118",
+              "$$hashKey": "object:31145"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=119",
+              "$$hashKey": "object:31146"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=120",
+              "$$hashKey": "object:31147"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=121",
+              "$$hashKey": "object:31148"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=122",
+              "$$hashKey": "object:31149"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=123",
+              "$$hashKey": "object:31150"
+            },
+            {
+              "jobUrl": "http://391fc38ff7b4:4040/jobs/job?id=124",
+              "$$hashKey": "object:31151"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635884335325_1262944516",
+      "id": "paragraph_1635882232446_852249078",
+      "dateCreated": "2021-11-02T20:18:55+0000",
+      "dateStarted": "2021-11-03T21:01:03+0000",
+      "dateFinished": "2021-11-03T21:01:40+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29801"
+    },
+    {
+      "user": "anonymous",
+      "dateUpdated": "2021-11-03T20:54:21+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1635972327828_929545783",
+      "id": "paragraph_1635972327828_929545783",
+      "dateCreated": "2021-11-03T20:45:27+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29802"
+    }
+  ],
+  "name": "HW4 - spark",
+  "id": "2GPBK9MNM",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {
+    "isRunning": false
+  },
+  "path": "/HW4 - spark"
+}
